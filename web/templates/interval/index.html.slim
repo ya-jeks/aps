@@ -1,0 +1,21 @@
+= link "New interval", to: interval_path(@conn, :new)
+
+table.table
+  thead
+    tr
+      th colspan="8"
+  tbody
+    = for interval <- @intervals do
+      tr
+        td = interval.id
+        td = interval.title
+        td = interval.kind
+        td = interval.start |> DateTime.from_unix! |> Timex.format!("{D} {Mshort} {h24}:{m}:{s}")
+        td = (interval.start+interval.duration) |> DateTime.from_unix! |> Timex.format!("{D} {Mshort} {h24}:{m}:{s}")
+        td = interval.duration |> Timex.Duration.from_seconds |> Timex.format_duration(:humanized)
+        td class="text-right"
+          = link "Show", to: interval_path(@conn, :show, interval), class: "btn btn-default btn-xs"
+          | &nbsp;
+          = link "Edit", to: interval_path(@conn, :edit, interval), class: "btn btn-default btn-xs"
+        td class="text-right"
+          = link "Delete", to: interval_path(@conn, :delete, interval), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs"

@@ -1,0 +1,19 @@
+h2 Show demand
+
+ul
+  li
+    strong Title:&nbsp;
+    = @demand.title
+  li
+    strong Product:&nbsp;
+    = @demand.product_id
+  li
+    strong Price:&nbsp;
+    = @demand.price
+  li
+    strong Qty:&nbsp;
+    = @demand.qty
+
+= link "Edit", to: demand_path(@conn, :edit, @demand)
+| &nbsp;
+= link "Back", to: demand_path(@conn, :index)

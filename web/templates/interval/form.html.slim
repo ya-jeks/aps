@@ -1,0 +1,46 @@
+= form_for @changeset, @action, fn f ->
+  = if @changeset.action do
+    .alert.alert-danger
+      p Oops, something went wrong! Please check the errors below.
+  .row
+    .col-xs-12.col-md-5.col-lg-4
+      .form-group
+        = label f, "Title", class: "control-label"
+        = text_input f, :title, class: "form-control"
+        = error_tag f, :title
+  .row
+    .col-xs-12.col-md-5.col-lg-4
+      .form-group
+        = label f, "Kind", class: "control-label"
+        = text_input f, :kind, class: "form-control"
+        = error_tag f, :kind
+  .row
+    .col-xs-12.col-md-5.col-lg-4
+      .form-group
+        = label f, "Start", class: "control-label"
+        span &nbsp;
+        = number_input f, :start, class: "form-control datetime"
+        = error_tag f, :start
+
+  .row
+    .col-xs-12.col-md-5.col-lg-4
+      .form-group
+        = label f, "Duration", class: "control-label"
+        = hidden_input f, :duration, class: "duration", "data-duration-hours": "#hours", "data-duration-minutes": "#minutes", "data-duration-seconds": "#seconds"
+        span &nbsp;
+        input#hours.form-control style="width: 70px; display: inline-block;"
+        span &nbsp;
+        'hrs
+        span &nbsp;
+        input#minutes.form-control style="width: 70px; display: inline-block;"
+        span &nbsp;
+        'mins 
+        span &nbsp;
+        input#seconds.form-control style="width: 70px; display: inline-block;"
+        'secs
+        = error_tag f, :duration
+
+  .row
+    .col-xs-12.col-md-5.col-lg-4
+      .form-group
+        = submit "Submit", class: "btn btn-primary"

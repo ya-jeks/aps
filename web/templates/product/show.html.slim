@@ -1,0 +1,12 @@
+h2 Show product
+
+.row
+  .col-xs-6
+    ul 
+      li = @product.title  
+      li = @product.kind
+      li = @product.price
+      li = @product.duration
+= link "Edit", to: product_path(@conn, :edit, @product)
+| &nbsp;
+= link "Back", to: product_path(@conn, :index)

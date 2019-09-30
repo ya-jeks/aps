@@ -1,0 +1,137 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.label-as-badge {
+    border-radius: 1em;
+}
+
+.truncate {
+  width: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  margin-bottom: 60px;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+// .navbar {
+//   border-radius: 0;
+// }
+
+// a.navbar-brand img {
+//   margin-top: -0.9em;
+// }
+
+.pointer {
+  cursor: pointer;
+}
+
+.row.demand{
+  margin-top: -1px;
+  border: 1px solid #e7e7e7;
+
+  &:hover {
+    background-color: #f7f7f7;
+  }
+
+  .numerator, .qty, .created_at, .due_date, .product, .vnd, .subtotal{
+    padding-top: 0.6em;
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  .container {
+    .text-muted {
+      margin: 20px 0;
+    }
+  }
+}
+
+// nav.navbar.navbar-default{
+//   margin-top: 1em;
+// }
+
+.iffytip {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.category_link{
+  margin-top: 0.3em;
+  font-size: 1.3em;
+}
+
+.dl-horizontal dt {
+  white-space: normal;
+}
+
+.dropdown > a{
+  text-decoration: none;
+}
+.task-check {
+  padding-top: 0.6em;
+}
+.btn span.glyphicon {opacity: 0;}
+.btn.active span.glyphicon {opacity: 1;}
+.cells [class^=col-] {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Space out content a bit */
+form, ul, table {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Phoenix flash messages */
+.alert:empty { display: none; }
+
+/* Phoenix inline forms in links and buttons */
+form.link, form.button {
+  display: inline;
+}
+
+/* Customize container */
+/*@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}*/
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}

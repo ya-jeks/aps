@@ -1,0 +1,34 @@
+= form_for @changeset, @action, [id: "productForm"], fn f ->
+  = if @changeset.action do
+    .alert.alert-danger
+      p Oops, something went wrong! Please check the errors below.
+
+  .row
+    .col-xs-12.col-md-6.col-lg-4
+      .form-group
+        = label f, "Title", class: "control-label"
+        = text_input f, :title, class: "form-control"
+        = error_tag f, :title
+  .row
+    .col-xs-12.col-md-6.col-lg-4
+      .form-group
+        = label f, "Kind", class: "control-label"
+        = text_input f, :kind, class: "form-control"
+        = error_tag f, :kind
+  .row
+    .col-xs-12.col-md-6.col-lg-4
+      .form-group
+        = label f, "Price", class: "control-label"
+        = text_input f, :price, class: "form-control"
+        = error_tag f, :price
+  .row
+    .col-xs-12.col-md-6.col-lg-4
+      .form-group
+        = label f, "Duration", class: "control-label"
+        = number_input f, :duration, class: "form-control"
+        = error_tag f, :duration
+
+  .row
+    .col-xs-12.col-md-6.col-lg-4
+      .form-group
+        = submit "Submit", class: "btn btn-primary"

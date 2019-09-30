@@ -1,0 +1,17 @@
+= link "New plan", to: plan_path(@conn, :new)
+
+table.table
+  thead
+    tr
+      th
+      th
+  tbody
+    = for plan <- @plans do
+      tr
+        td = link plan.id, to: plan_path(@conn, :show, plan)
+        td class="text-right"
+          = link "Show", to: plan_path(@conn, :show, plan), class: "btn btn-default btn-xs"
+          | &nbsp;
+          = link "Edit", to: plan_path(@conn, :edit, plan), class: "btn btn-default btn-xs"
+          | &nbsp;
+          = link "Delete", to: plan_path(@conn, :delete, plan), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs"

@@ -1,0 +1,82 @@
+doctype html
+html lang="en" 
+  head
+    meta charset="utf-8"
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    meta content="" name="description"
+    meta content="" name="author"
+    = csrf_meta_tag()
+    title Lf APS
+    link rel="stylesheet" href="#{static_path(@conn, "/css/app.css")}"
+  body
+    div#app
+      nav.navbar.navbar-default
+        .container-fluid
+          .navbar-header
+            button.navbar-toggle.collapsed aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand href="/" 
+              img src="#{static_path(@conn, "/images/logo.png")}" style="width: 2.7em; height: 2.7em; margin-top: -0.8em;"
+            a.navbar-brand href="/" style="margin-left: -20px;"
+              b Lf
+          /! Collect the nav links, forms, and other content for toggling
+          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li 
+                a href="/products"
+                  i.fa.fa-shopping-cart
+                  '&nbsp;
+                  'Products/Ops
+              li 
+                a href="/product_parts"
+                  i.fa.fa-tree
+                  '&nbsp;
+                  'Parts
+              li 
+                a href="/intervals"
+                  i.fa.fa-calendar
+                  '&nbsp;
+                  'Schedule
+              li 
+                a href="/demands"
+                  i.fa.fa-tasks
+                  '&nbsp;
+                  'Demands
+              li 
+                a href="#{plan_path(@conn, :new)}"
+                  i.fa.fa-tasks
+                  '&nbsp;
+                  'New plan
+
+            ul.nav.navbar-nav.navbar-right  
+              = if Coherence.current_user(@conn) do
+                li.dropdown
+                  a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" 
+                    = "#{@current_user.email}"
+                    span.caret
+                  ul.dropdown-menu  
+                    li
+                      a href="/settings"
+                        i.fa.fa-cogs
+                        '&nbsp;
+                        'Settings
+                    li.divider role="separator" 
+                    li
+                      a href="/sign_out"
+                        i.fa.fa-sign-out
+                        '&nbsp;
+                        'Sign out
+
+      .content
+        .container-fluid
+          p.alert.alert-info role="alert"= get_flash(@conn, :info) 
+          p.alert.alert-danger role="alert"= get_flash(@conn, :error)
+          main role="main"= render @view_module, @view_template, assigns
+      script src="#{static_path(@conn, "/js/app.js")}"
+      script src="#{static_path(@conn, "/js/vendor.js")}"
+      footer.footer
+    

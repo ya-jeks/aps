@@ -1,0 +1,19 @@
+= link "New product part", to: product_part_path(@conn, :new)
+
+table.table
+  thead
+    tr
+      th Product
+      th Part
+      th
+  tbody
+    = for product_part <- @product_parts do
+      tr
+        td= product_part.product.title
+        td= product_part.part.title
+        td class="text-right"
+          = link "Show", to: product_part_path(@conn, :show, product_part), class: "btn btn-default btn-xs"
+          | &nbsp;
+          = link "Edit", to: product_part_path(@conn, :edit, product_part), class: "btn btn-default btn-xs"
+        td class="text-right"
+          = link "Delete", to: product_part_path(@conn, :delete, product_part), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs"

@@ -1,0 +1,23 @@
+= link "New demand", to: demand_path(@conn, :new)
+
+table.table
+  thead
+    tr
+      th Title
+      th Product
+      th Price
+      th Qty
+      th
+  tbody
+    = for demand <- @demands do
+      tr
+        td= demand.title
+        td= demand.product.title
+        td= demand.price
+        td= demand.qty
+        td class="text-right"
+          = link "Show", to: demand_path(@conn, :show, demand), class: "btn btn-default btn-xs"
+          | &nbsp;
+          = link "Edit", to: demand_path(@conn, :edit, demand), class: "btn btn-default btn-xs"
+        td class="text-right"
+          = link "Delete", to: demand_path(@conn, :delete, demand), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs"

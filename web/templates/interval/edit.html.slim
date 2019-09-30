@@ -1,0 +1,5 @@
+h2 Edit interval
+
+= render "form.html", changeset: @changeset, action: interval_path(@conn, :update, @interval)
+
+= link "Back", to: interval_path(@conn, :index)

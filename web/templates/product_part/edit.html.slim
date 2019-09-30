@@ -1,0 +1,5 @@
+h2 Edit product part
+
+= render "form.html", changeset: @changeset, action: product_part_path(@conn, :update, @product_part)
+
+= link "Back", to: product_part_path(@conn, :index)

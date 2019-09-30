@@ -1,0 +1,108 @@
+.row#planner
+  .col-xs-3
+    h4 Demands
+    ul.list-group
+      li.list-group-item v-for="item in demands"
+        .row style="margin: 0; padding: 0;"
+          .col-xs-1 style="margin: 0; padding: 0;"
+            | <input type="checkbox" v-bind:value="item.id" v-model="chosenDemands" style=" transform:scale(1.3, 1.3);">
+          .col-xs-8 style="margin: 0; padding: 0;"
+            '{{ item.id }}.
+            '{{ item.product_title }}
+          .col-xs-2#qty style="margin: 0; padding: 0;"
+            | <input type="number" v-model.number="item.qty" style="width: 5em; text-align: right;" @input="onQtyInput(item, 'qty', $event)"></input>
+          .col-xs-1 style="margin: 0; padding: 0;"
+            '&nbsp;
+    .text-right
+      | <div class="btn btn-default btn-primary" v-on:click="estimate">Estimate</div>
+      
+    h4 Resources
+    ul.list-group
+      li.list-group-item v-for="item in intervals"
+        '&nbsp; {{ item.kind }}.
+        b 
+          '{{ item.human_duration }} from 
+          '{{ item.start }}
+
+  .col-xs-9
+    ul.nav.nav-tabs role="tablist" style="margin-top: 0;"
+      li.active role="presentation" 
+        a aria-controls="graph" data-toggle="tab" href="#graph" role="tab"  Graph
+      li role="presentation" 
+        a aria-controls="result" data-toggle="tab" href="#result" role="tab"  Result
+    .tab-content
+      #graph.tab-pane.active role="tabpanel" 
+        p
+          #plan-chart style="width:100%"
+      
+      #result.tab-pane role="tabpanel"
+        .row
+          .col-xs-6
+            h4 Planned
+            ul.list-group
+              li.list-group-item v-for="item in planned"
+                '{{ item.resourceId }};
+                span
+                  '{{ item.title }};
+                b
+                  '{{ item.qty }}
+                b
+                  '{{ item.human_start }} - {{ item.human_end }};
+                b
+                  '{{ item.human_duration }}
+            
+            h4 Skipped
+            ul.list-group
+              li.list-group-item v-for="item in skipped"
+                b 
+                  '{{ item.id }}.
+                '{{ item.title }}
+
+          .col-xs-3
+            h4 Required
+            ul.list-group
+              li.list-group-item v-for="item in required"
+                '&nbsp; {{ item.kind }}.
+                span
+                  '{{ item.human_duration }};
+                b 
+                  '{{ item.load_percent }}%
+
+            h4 Available
+            ul.list-group
+              li.list-group-item v-for="item in available"
+                '&nbsp; {{ item.kind }}.
+                b
+                  '{{ item.human_duration }}
+
+          .col-xs-3
+            h4 Rest
+            ul.list-group
+              li.list-group-item v-for="item in free"
+                '&nbsp; {{ item.kind }}.
+                b
+                  '{{ item.start }}
+                  '{{ item.human_duration }}
+          
+  /     p Chosen
+  /     = for demand <- @demands do
+  /       .row
+  /         .col-xs-1.text-center
+  /           .task-check.btn-group data-toggle="buttons"
+  /             label.btn.btn-primary.btn-xs
+  /               input type="checkbox" name="demands_ids[]" autocomplete="off" value=demand.id
+  /               span.glyphicon.glyphicon-ok
+  /         .col-xs-1.tex-left
+  /           p
+  /             div= demand.title
+  /         .col-xs-1
+  /           p
+  /             div
+  /               input type="text" name="demands_qty[]" size="7"
+  /     
+  / .row
+  /   .col-xs-1
+  /     p &nbsp;
+  / 
+  / #plan-chart style="width:100%"
+  /   

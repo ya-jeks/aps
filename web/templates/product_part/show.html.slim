@@ -1,0 +1,13 @@
+h2 Show product part
+
+ul
+  li
+    strong Product:&nbsp;
+    = @product_part.product_id
+  li
+    strong Part:&nbsp;
+    = @product_part.part_id
+
+= link "Edit", to: product_part_path(@conn, :edit, @product_part)
+| &nbsp;
+= link "Back", to: product_part_path(@conn, :index)

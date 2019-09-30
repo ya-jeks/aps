@@ -1,0 +1,5 @@
+h2 Edit demand
+
+= render "form.html", changeset: @changeset, action: demand_path(@conn, :update, @demand)
+
+= link "Back", to: demand_path(@conn, :index)

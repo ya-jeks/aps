@@ -1,0 +1,22 @@
+= form_for @changeset, @action, fn f ->
+  = if @changeset.action do
+    .alert.alert-danger
+      p Oops, something went wrong! Please check the errors below.
+  .form-group
+    = label f, :title, class: "control-label"
+    = text_input f, :title, class: "form-control"
+    = error_tag f, :title
+  .form-group
+    = label f, :price, class: "control-label"
+    = number_input f, :price, step: "any", class: "form-control"
+    = error_tag f, :price
+  .form-group
+    = label f, :product, class: "control-label"
+    = select f, :product_id, products, class: "form-control"
+    = error_tag f, :product_id
+  .form-group
+    = label f, :qty, class: "control-label"
+    = number_input f, :qty, class: "form-control"
+    = error_tag f, :qty
+  .form-group
+    = submit "Submit", class: "btn btn-primary"
